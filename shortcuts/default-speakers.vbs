@@ -1,0 +1,1 @@
+CreateObject("Wscript.Shell").Run "pythonw ""%userprofile%\_GIT\volume-steps-control\switch-default-devices.py"" speakers", 0, False
