@@ -17,6 +17,7 @@ Since Windows allows you to change volume only by 1 or 2 increment/decrement poi
 I have defined all of the steps above. It can be freely modified. By default the steps are incremented by +/-5%. So for example if your volume level for some reason is 53 then increasing will change it to 55 and decreasing to 50. This is to avoid situations where you might modify volume by using different sources or even using the volume slider in windows and to be sure the increments always work the same.
 
 Example usage:
+
 `python "%userprofile%\_GIT\volume-steps-control\change-volume-steps.py" "Arctis Nova 7" up`  
 `python "%userprofile%\_GIT\volume-steps-control\change-volume-steps.py" "discord.exe" down`  
 
