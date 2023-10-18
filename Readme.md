@@ -4,7 +4,8 @@ Simple python scripts that allow you to change default sound devices and the vol
 
 ## Scripts
 
-In all my scripts you will have to modify the path to the svcl executable:
+In all my scripts you will have to modify the path to the svcl executable:  
+
 `exePath="%userprofile%\\svcl-x64\\svcl.exe"`
 
 ### change-volume-steps.py
@@ -16,8 +17,8 @@ Since Windows allows you to change volume only by 1 or 2 increment/decrement poi
 I have defined all of the steps above. It can be freely modified. By default the steps are incremented by +/-5%. So for example if your volume level for some reason is 53 then increasing will change it to 55 and decreasing to 50. This is to avoid situations where you might modify volume by using different sources or even using the volume slider in windows and to be sure the increments always work the same.
 
 Example usage:
-`python "%userprofile%\_GIT\volume-steps-control\change-volume-steps.py" "Arctis Nova 7" up`
-`python "%userprofile%\_GIT\volume-steps-control\change-volume-steps.py" "discord.exe" down`
+`python "%userprofile%\_GIT\volume-steps-control\change-volume-steps.py" "Arctis Nova 7" up`  
+`python "%userprofile%\_GIT\volume-steps-control\change-volume-steps.py" "discord.exe" down`  
 
 The names of the devices were found using [Sound Volume View](https://www.nirsoft.net/utils/sound_volume_view.html) tool. App names are same as their executable name.
 
@@ -31,14 +32,14 @@ The idea behind this is that I usually have 3 scenarios:
 
 This script allows to switch between those 3 scenarios. For example:
 
-`python "%userprofile%\_GIT\volume-steps-control\switch-default-devices.py" speakers`
-`python "%userprofile%\_GIT\volume-steps-control\switch-default-devices.py" headphones`
-`python "%userprofile%\_GIT\volume-steps-control\switch-default-devices.py" hybrid`
+`python "%userprofile%\_GIT\volume-steps-control\switch-default-devices.py" speakers`  
+`python "%userprofile%\_GIT\volume-steps-control\switch-default-devices.py" headphones`  
+`python "%userprofile%\_GIT\volume-steps-control\switch-default-devices.py" hybrid`  
 
 There are 2 properties that have to be modified inside the script:
 
-`headphonesName='Arctis Nova 7'`
-`speakersName='Realtek(R) Audio'`
+`headphonesName='Arctis Nova 7'`  
+`speakersName='Realtek(R) Audio'`  
 
 The names of those devices were found using [Sound Volume View](https://www.nirsoft.net/utils/sound_volume_view.html) tool.
 
