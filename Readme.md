@@ -1,12 +1,14 @@
 # Volume Steps Control
 
-Simple python scripts that allow you to change default sound devices and the volume increment/decrement. All of it is done by using the wonderful [Sound Volume Command Line](https://www.nirsoft.net/utils/sound_volume_command_line.html) and [Sound Volume View](https://www.nirsoft.net/utils/sound_volume_view.html) tools. The pyton scripts are simply acting as a wrapper that executes the tools with your predefined settings.
+Simple python scripts that allow you to change default sound devices and the volume increment/decrement.
 
 ## Scripts
 
-In all my scripts you will have to modify the path to the svcl executable:  
+### list-devices.py
 
-`exePath="%userprofile%\\svcl-x64\\svcl.exe"`
+This is a very simple script that just prints the names of your audio devices and processes that use sound. Use those names in other scripts.
+
+There is also a special, virtual device called "DefaultRenderDevice" that you can use. This will simply allow you to change volume of whatever is the currently default audio device (For example headphones or speakers)
 
 ### change-volume-steps.py
 
@@ -19,11 +21,15 @@ I have defined all of the steps above. It can be freely modified. By default the
 Example usage:
 
 `python "%userprofile%\_GIT\volume-steps-control\change-volume-steps.py" "Arctis Nova 7" up`  
-`python "%userprofile%\_GIT\volume-steps-control\change-volume-steps.py" "discord.exe" down`  
-
-The names of the devices were found using [Sound Volume View](https://www.nirsoft.net/utils/sound_volume_view.html) tool. App names are same as their executable name.
+`python "%userprofile%\_GIT\volume-steps-control\change-volume-steps.py" "Discord.exe" down`  
 
 ### switch-default-devices.py
+
+All of it is done by using the wonderful [Sound Volume Command Line](https://www.nirsoft.net/utils/sound_volume_command_line.html) and [Sound Volume View](https://www.nirsoft.net/utils/sound_volume_view.html) tools. The pyton script is simply acting as a wrapper that executes the tools with your predefined settings.
+
+You will have to modify the path to the svcl executable:  
+
+`exePath="%userprofile%\\svcl-x64\\svcl.exe"`
 
 The idea behind this is that I usually have 3 scenarios:
 

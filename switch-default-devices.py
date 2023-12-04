@@ -1,6 +1,7 @@
 import sys
 import subprocess
 import time
+import os
 
 # start = time.time()
 
@@ -12,10 +13,21 @@ exePath="%userprofile%\\svcl-x64\\svcl.exe"
 headphonesName='Arctis Nova 7'
 # Name of your speakers device as seen by using the https://www.nirsoft.net/utils/sound_volume_view.html tool (Note this is the GUI version)
 speakersName='Realtek(R) Audio'
+# Name of your default device as seen by using the https://www.nirsoft.net/utils/sound_volume_view.html tool (Note this is the GUI version)
+defaultName='DefaultRenderDevice'
 # Do you want to output all sound to 'speakers' or 'headphones' or mixed mode 'hybrid'
 deviceMode=sys.argv[1]
 
 ## END OF CONFIGURATION VARIABLES ##
+
+# ## DO NOT TOUCH FROM THIS POINT ##
+
+# In case you use change-volume-steps.py scipt then default device cache will have to be reset
+cachePath = f"{os.path.expanduser('~')}\\.volumecache" # The cache files are stored in user home directory
+if not os.path.exists(cachePath):
+    defaultVolumeName="".join(x for x in defaultName if x.isalnum())
+
+    os.remove(rf"{cachePath}\{defaultVolumeName}")
 
 ## Prepare commands
 if(deviceMode == 'speakers'):
