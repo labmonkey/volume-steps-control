@@ -59,7 +59,7 @@ def GetProcesses() -> list[AudioSession]:
 
 def GetProcess(name) -> AudioSession:
     for session in GetProcesses():
-        if session.Process.name() == name:
+        if GetDeviceName(session) == name:
             return session
     return None
 
@@ -79,10 +79,16 @@ def GetMasterVolume(device):
 def SetMasterVolume(device, targetVolume):
     if isinstance(device, AudioSession):
         realVolume = targetVolume / 100
-        print("Setting volume of '%s' : %s (%s)" % (GetDeviceName(device), targetVolume, realVolume))
+        print(
+            "Setting volume of '%s' : %s (%s)"
+            % (GetDeviceName(device), targetVolume, realVolume)
+        )
         return device.SimpleAudioVolume.SetMasterVolume(realVolume, None)
     elif isinstance(device, AudioDevice):
         realVolume = targetVolume / 100
-        print("Setting volume of '%s' : %s (%s)" % (GetDeviceName(device), targetVolume, realVolume))
+        print(
+            "Setting volume of '%s' : %s (%s)"
+            % (GetDeviceName(device), targetVolume, realVolume)
+        )
         return device.EndpointVolume.SetMasterVolumeLevelScalar(realVolume, None)
     return None

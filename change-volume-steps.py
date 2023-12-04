@@ -1,10 +1,5 @@
 import sys
-import subprocess
-import time
-import os
 from src.common import *
-
-# start = time.time()
 
 ## CONFIGURATION VARIABLES ##
 
@@ -71,7 +66,3 @@ elif volumeMode == "down":
                 break
 
 SetMasterVolume(activeDevice, targetVolumeLevel)
-
-# end = time.time()
-# elapsed_time_ms = (end - start) * 1000
-# print(f"Elapsed time: {elapsed_time_ms:.2f} milliseconds")
