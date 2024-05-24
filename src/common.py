@@ -41,7 +41,7 @@ def GetDeviceName(device) -> str:
     if isinstance(device, AudioSession):
         return device.Process.name()
     elif isinstance(device, AudioDevice):
-        return device.properties.get("{026E516E-B814-414B-83CD-856D6FEF4822} 2")
+        return device.properties.get("{B3F8FA53-0004-438E-9003-51A46E139BFC} 6")
     return None
 
 
@@ -65,16 +65,18 @@ def GetProcess(name) -> AudioSession:
 
 
 def GetMasterVolume(device):
+    volume = GetMasterVolumeInternal(device)
+    print("Getting volume of '%s' : %s" % (GetDeviceName(device), volume))
+    return volume
+
+def GetMasterVolumeInternal(device):
     if isinstance(device, AudioSession):
         volume = int(round(device.SimpleAudioVolume.GetMasterVolume(), 2) * 100)
-        print("Getting volume of '%s' : %s" % (GetDeviceName(device), volume))
         return volume
     elif isinstance(device, AudioDevice):
         volume = int(round(device.EndpointVolume.GetMasterVolumeLevelScalar(), 2) * 100)
-        print("Getting volume of '%s' : %s" % (GetDeviceName(device), volume))
         return volume
     return None
-
 
 def SetMasterVolume(device, targetVolume):
     if isinstance(device, AudioSession):
