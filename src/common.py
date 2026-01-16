@@ -1,6 +1,6 @@
 from pycaw.pycaw import AudioUtilities, AudioDevice, AudioSession
 from pycaw.constants import DEVICE_STATE, EDataFlow
-
+from typing import Optional
 
 class bcolors:
     HEADER = "\033[95m"
@@ -34,7 +34,7 @@ def GetActiveDevice(name) -> AudioDevice:
     return None
 
 
-def GetDeviceName(device) -> str:
+def GetDeviceName(device) -> Optional[str]:
     """
     Normally device.FriendlyName could be used (more unique) but at same time the name might contain language specific names and letters that cause issues
     """
@@ -46,7 +46,7 @@ def GetDeviceName(device) -> str:
 
 
 def GetDefaultDevice() -> AudioDevice:
-    return AudioUtilities.CreateDevice(AudioUtilities.GetSpeakers())
+    return AudioUtilities.GetSpeakers()
 
 
 def GetProcesses() -> list[AudioSession]:
@@ -64,12 +64,12 @@ def GetProcess(name) -> AudioSession:
     return None
 
 
-def GetMasterVolume(device):
+def GetMasterVolume(device) -> Optional[int]:
     volume = GetMasterVolumeInternal(device)
     print("Getting volume of '%s' : %s" % (GetDeviceName(device), volume))
     return volume
 
-def GetMasterVolumeInternal(device):
+def GetMasterVolumeInternal(device) -> Optional[int]:
     if isinstance(device, AudioSession):
         volume = int(round(device.SimpleAudioVolume.GetMasterVolume(), 2) * 100)
         return volume

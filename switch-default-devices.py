@@ -2,6 +2,7 @@ import sys
 import subprocess
 import time
 import os
+from src.storage import Storage
 
 # start = time.time()
 
@@ -22,12 +23,7 @@ deviceMode = sys.argv[1]
 
 # ## DO NOT TOUCH FROM THIS POINT ##
 
-# In case you use change-volume-steps.py scipt then default device cache will have to be reset
-cachePath = f"{os.path.expanduser('~')}\\.volumecache"  # The cache files are stored in user home directory
-if not os.path.exists(cachePath):
-    defaultVolumeName = "".join(x for x in defaultName if x.isalnum())
-
-    os.remove(rf"{cachePath}\{defaultVolumeName}")
+storage = Storage("switch-default-devices")
 
 ## Prepare commands
 if deviceMode == "speakers":
@@ -47,19 +43,25 @@ if deviceMode == "hybrid":
     commandSetFirefox = f'{exePath} /SetAppDefault "{speakersName}" all firefox.exe'
     commandSetChrome = f'{exePath} /SetAppDefault "{speakersName}" all chrome.exe'
 
-print(commandSetAll)
-print(commandSetFirefox)
-print(commandSetChrome)
+# print(commandSetAll)
+# print(commandSetFirefox)
+# print(commandSetChrome)
 
-subprocess.run(
-    commandSetAll, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True
+result = subprocess.run(
+    commandSetAll, shell=True, 
+    stdout=subprocess.PIPE, 
+    stderr=subprocess.PIPE, 
+    text=True, 
+    encoding='utf-8'
 )
+print(result.stdout)
 subprocess.run(
     commandSetFirefox,
     shell=True,
     stdout=subprocess.PIPE,
     stderr=subprocess.PIPE,
     text=True,
+    encoding='utf-8'
 )
 subprocess.run(
     commandSetChrome,
@@ -67,7 +69,10 @@ subprocess.run(
     stdout=subprocess.PIPE,
     stderr=subprocess.PIPE,
     text=True,
+    encoding='utf-8'
 )
+
+storage.setStorageValue("deviceMode", deviceMode)
 
 # end = time.time()
 # elapsed_time_ms = (end - start) * 1000

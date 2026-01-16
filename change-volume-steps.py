@@ -44,11 +44,13 @@ else:
 
 if activeDevice is None:
     print(f"{deviceName} not found. Exit.")
-    exit
+    sys.exit()
 
 currentVolumeLevel = GetMasterVolume(activeDevice)
 
-if volumeMode == "up":
+if volumeMode.isdigit():
+    targetVolumeLevel = int(volumeMode)
+elif volumeMode == "up":
     if currentVolumeLevel == volumeSteps[-1]:
         targetVolumeLevel = currentVolumeLevel
     else:

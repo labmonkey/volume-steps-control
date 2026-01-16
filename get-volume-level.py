@@ -18,6 +18,6 @@ else:
 
 if activeDevice is None:
     print(f"{deviceName} not found. Exit.")
-    exit
+    sys.exit()
 
 print(GetMasterVolumeInternal(activeDevice))
